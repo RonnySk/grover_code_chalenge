@@ -33,12 +33,25 @@ export default function Home() {
         {allSubscriptions.length === 0 ? (
           <div>Loading...</div>
         ) : (
-          allSubscriptions.map((oneProduct) => (
+          allSubscriptions.map((oneSubscription) => (
             <>
-              <SubscriptionCard key={2} product={oneProduct} />;
+              <SubscriptionCard
+                key={oneSubscription._id}
+                subscription={oneSubscription}
+              />
+              ;
             </>
           ))
         )}
+
+        {/* another option 
+        {allSubscriptions.length !== 0
+          ? allSubscriptions.map((oneProduct) => (
+              <>
+                <SubscriptionCard key={2} product={oneProduct} />;
+              </>
+            ))
+          : null} */}
       </>
     </div>
   );
