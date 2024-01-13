@@ -2,50 +2,53 @@ export {};
 
 declare global {
   type Product = {
-    referenceId: String;
-    createdAt: String;
-    updatedAt: String;
-    activatedAt: String;
-    activeUntil: String;
-    terminatedAt: String;
-    terminationReason: String;
-    terminationComment: String;
-    rentalPeriod: Number;
-    monthlyPrice: Number;
-    state: String;
-    productId: String;
-    product: {
-      id: String;
-      slug: String;
-      title: String;
-      coreAttribute: String;
-      image: String;
-      rentalPlans: [
-        {
-          id: String;
-          period: Number;
-          price: Number;
-          productId: String;
-        },
-        {
-          id: String;
-          period: Number;
-          price: Number;
-          productId: String;
-        },
-        {
-          id: String;
-          period: Number;
-          price: Number;
-          productId: String;
-        },
-        {
-          id: String;
-          period: Number;
-          price: Number;
-          productId: String;
-        }
-      ];
-    };
+    id: string;
+    slug: string;
+    title: string;
+    coreAttribute: string;
+    image: string;
+    rentalPlans: [
+      {
+        id: string;
+        period: number;
+        price: number;
+        productId: string;
+      },
+      {
+        id: string;
+        period: number;
+        price: number;
+        productId: string;
+      },
+      {
+        id: string;
+        period: number;
+        price: number;
+        productId: string;
+      },
+      {
+        id: string;
+        period: number;
+        price: number;
+        productId: string;
+      }
+    ];
+  };
+
+  type Subscription = {
+    _id: string;
+    referenceId: string;
+    createdAt: string;
+    updatedAt: string;
+    activatedAt: string;
+    activeUntil: string;
+    terminatedAt: string;
+    terminationReason: string;
+    terminationComment: string;
+    rentalPeriod: number;
+    monthlyPrice: number;
+    state: string;
+    productId: string;
+    product: Product;
   };
 }

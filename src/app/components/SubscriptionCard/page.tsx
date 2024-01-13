@@ -2,11 +2,14 @@ import Image from "next/image";
 import Button from "../Button/page";
 
 const SubscriptionCard = ({ subscription }: any) => {
-  const { product } = subscription;
+  const { product }: { product: Product } = subscription;
+
+  // witohut object descontructing:
+  // const product: Product = subscription.product;
 
   return (
     <>
-      <div className="flex flex-col gap-2 border-2 border-white w-3/4 p-16 ">
+      <div className="flex flex-col gap-4 border-2 border-white w-3/4 p-16 ">
         <Image
           src={product.image}
           width={150}

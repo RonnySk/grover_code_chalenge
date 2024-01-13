@@ -5,9 +5,7 @@ import GroverLogo from "./components/GroverLogo/page";
 import SubscriptionCard from "./components/SubscriptionCard/page";
 
 export default function Home() {
-  const [allSubscriptions, setallSubscriptions] = useState([]);
-
-  console.log("all sub", allSubscriptions);
+  const [allSubscriptions, setallSubscriptions] = useState<Subscription[]>([]);
 
   useEffect(() => {
     try {
@@ -16,9 +14,8 @@ export default function Home() {
           method: "GET",
         });
 
-        const data = await response.json();
+        const data: Subscription[] = await response.json();
 
-        console.log("response from api", data);
         setallSubscriptions(data);
       };
 
@@ -33,13 +30,12 @@ export default function Home() {
         {allSubscriptions.length === 0 ? (
           <div>Loading...</div>
         ) : (
-          allSubscriptions.map((oneSubscription) => (
+          allSubscriptions.map((oneSubscription: Subscription) => (
             <>
               <SubscriptionCard
                 key={oneSubscription._id}
                 subscription={oneSubscription}
               />
-              ;
             </>
           ))
         )}
