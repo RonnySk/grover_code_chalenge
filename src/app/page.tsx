@@ -10,7 +10,7 @@ export default function Home() {
   useEffect(() => {
     try {
       const fetchAllSubscriptions = async () => {
-        const response = await fetch("/pages/api/subscriptions", {
+        const response: Response = await fetch("/pages/api/subscriptions", {
           method: "GET",
         });
 
@@ -40,7 +40,7 @@ export default function Home() {
           ))
         )}
 
-        {/* another option 
+        {/* another option without loading...
         {allSubscriptions.length !== 0
           ? allSubscriptions.map((oneProduct) => (
               <>
