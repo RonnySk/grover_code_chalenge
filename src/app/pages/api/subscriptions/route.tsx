@@ -8,10 +8,6 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
     const allSubscriptions = await Product.find({});
 
-    // const { product } = allSubscriptions;
-
-    console.log(allSubscriptions);
-
     return new Response(JSON.stringify(allSubscriptions), { status: 201 });
   } catch (error) {}
 };

@@ -17,7 +17,9 @@ const Button = ({ subscription }: any) => {
         <button className="border-2 border-white w-80 p-2 hover:bg-gray-500">
           Extend rental to 12 months for ${product.rentalPlans[3].price}
         </button>
-      ) : null}
+      ) : (
+        <p>You cannot extend your device.</p>
+      )}
     </>
   );
 };

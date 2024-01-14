@@ -71,8 +71,10 @@ const SubscriptionCard = ({ subscription }: any) => {
     <ActiveCard />
   ) : subscription.state === "FULFILLING" ? (
     <InTransitCard />
-  ) : (
+  ) : subscription.state === "TERMINATED" ? (
     <TerminatedCard />
+  ) : (
+    <p>You don`t have any subscription</p>
   );
 };
 
