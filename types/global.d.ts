@@ -7,32 +7,12 @@ declare global {
     title: string;
     coreAttribute: string;
     image: string;
-    rentalPlans: [
-      {
-        id: string;
-        period: number;
-        price: number;
-        productId: string;
-      },
-      {
-        id: string;
-        period: number;
-        price: number;
-        productId: string;
-      },
-      {
-        id: string;
-        period: number;
-        price: number;
-        productId: string;
-      },
-      {
-        id: string;
-        period: number;
-        price: number;
-        productId: string;
-      }
-    ];
+    rentalPlans: {
+      id: string;
+      period: number;
+      price: number;
+      productId: string;
+    }[];
   };
 
   type Subscription = {
@@ -47,7 +27,7 @@ declare global {
     terminationComment: string;
     rentalPeriod: number;
     monthlyPrice: number;
-    state: string;
+    state: "DRAFT" | "ACTIVE" | "FULFILLING" | "TERMINATED";
     productId: string;
     product: Product;
   };

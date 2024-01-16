@@ -1,80 +1,37 @@
 import Image from "next/image";
-import { useState } from "react";
 import Button from "../Button/page";
 
-const SubscriptionCard = ({ subscription }: any) => {
-  const { product }: { product: Product } = subscription;
+type Props = {
+  subscription: Subscription;
+};
 
-  // witohut object descontructing:
-  // const product: Product = subscription.product;
+const SubscriptionCard = ({ subscription }: Props) => {
+  const { product } = subscription;
 
-  const TerminatedCard = () => {
-    return (
-      <>
-        <div className="flex flex-col gap-4 border-2 border-white w-3/4 p-16 opacity-50 ">
-          <Image
-            src={product.image}
-            width={150}
-            height={150}
-            alt="product image"
-          />
-          <h1 className="font-bold">{product.title}</h1>
-          <p className="font-bold capitalize">Ended</p>
-        </div>
-      </>
-    );
-  };
-
-  const ActiveCard = () => {
-    return (
-      <>
-        <div className="flex flex-col gap-4 border-2 border-white w-3/4 p-16 ">
-          <Image
-            src={product.image}
-            width={150}
-            height={150}
-            alt="product image"
-          />
-          <h1 className="font-bold">{product.title}</h1>
-          <p>
-            <span className="font-bold capitalize">
-              {subscription.state.toLowerCase()}
-            </span>{" "}
-            - until 02.12.2024
-          </p>
+  return (
+    <div
+      className={`flex flex-row items-center gap-4 border-2 border-white w-3/4 p-16 ${
+        subscription.state === "TERMINATED" && "opacity-50"
+      }`}
+    >
+      <Image src={product.image} width={150} height={150} alt="product image" />
+      <div className="flex flex-col justify-items-center gap-4 ml-4">
+        <h1 className="font-bold">{product.title}</h1>
+        <p className="font-bold capitalize">
+          {subscription.state === "FULFILLING"
+            ? "In Transit"
+            : subscription.state === "ACTIVE"
+            ? "Active - until 02.12.2024"
+            : "Ended"}
+        </p>
+        {["ACTIVE", "FULFILLING"].includes(subscription.state) && (
           <p>${subscription.monthlyPrice} per month</p>
+        )}
+        {subscription.state === "ACTIVE" && (
           <Button subscription={subscription} />
-        </div>
-      </>
-    );
-  };
-
-  const InTransitCard = () => {
-    return (
-      <>
-        <div className="flex flex-col gap-4 border-2 border-white w-3/4 p-16 ">
-          <Image
-            src={product.image}
-            width={150}
-            height={150}
-            alt="product image"
-          />
-          <h1 className="font-bold">{product.title}</h1>
-          <p className="font-bold capitalize">In Transit</p>
-          <p>${subscription.monthlyPrice} per month</p>
-        </div>
-      </>
-    );
-  };
-
-  return subscription.state === "ACTIVE" ? (
-    <ActiveCard />
-  ) : subscription.state === "FULFILLING" ? (
-    <InTransitCard />
-  ) : subscription.state === "TERMINATED" ? (
-    <TerminatedCard />
-  ) : (
-    <p>You don`t have any subscription</p>
+        )}
+      </div>
+    </div>
   );
 };
 
