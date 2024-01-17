@@ -38,6 +38,14 @@ function getSubscriptionText(subscription: Subscription): string {
 //     return "You cannot extend your rental";
 // }
 
+const handleOneSubscription = async () => {
+  const response = await fetch("/pages/api/subscriptions/123121212", {
+    method: "GET",
+  });
+
+  const data = await response.json();
+};
+
 type Props = {
   subscription: Subscription;
 };
@@ -47,7 +55,10 @@ const Button = ({ subscription }: Props) => {
 
   return (
     <>
-      <button className="border-2 border-white w-80 p-2 hover:bg-gray-500">
+      <button
+        className="border-2 border-white w-80 p-2 hover:bg-gray-500"
+        onClick={handleOneSubscription}
+      >
         {buttonText}
       </button>
     </>
